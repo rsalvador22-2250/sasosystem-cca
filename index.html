@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SASO | Add Student Record</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="download-Photoroom.png" sizes="96x96" />
+<link rel="icon" type="image/png" sizes="32x32" href="download-Photoroom.png">
+<link rel="icon" type="image/png" sizes="16x16" href="download-Photoroom.png">
+<link rel="icon" href="download-Photoroom.png" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/download-Photoroom.png">
+<link rel="apple-touch-icon" sizes="60x60" href="download-Photoroom.png">
+<link rel="apple-touch-icon" sizes="114x114" href="download-Photoroom.png">
+<link rel="apple-touch-icon" sizes="144x144" href="download-Photoroom.png">
+<link rel="icon" type="school logo-Photoroom" href="download-Photoroom.png">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root {
+    --primary: #059669;
+    --primary-dark: #047857;
+    --bg-gradient: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --input-bg: #f8fafc;
+    --input-border: #e2e8f0;
+    --radius: 16px;
+    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    --btn-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
+    --toggle-eye-color: var(--text-muted);
+    --transition: all 0.3s ease;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    --primary: #22c55e;
+    --primary-dark: #16a34a;
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    --card-bg: #1e293b;
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --input-bg: #0f172a;
+    --input-border: #334155;
+    --btn-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+    --toggle-eye-color: #94a3b8;
+}
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+    -webkit-tap-highlight-color: transparent; 
+}
+
+body {
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    transition: var(--transition);
+}
+
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border: none;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: var(--btn-shadow);
+    transition: var(--transition);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode-toggle:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 8px 20px rgba(5, 150, 105, 0.3);
+}
+
+.container {
+    background: var(--card-bg);
+    padding: 30px 20px;
+    border-radius: var(--radius);
+    width: 100%;
+    max-width: 450px;
+    box-shadow: var(--shadow);
+    animation: fadeIn 0.5s ease;
+    transition: var(--transition);
+    border: 1px solid var(--input-border);
+}
+
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(10px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+.container h2 {
+    text-align: center;
+    color: var(--text-main);
+    margin-bottom: 6px;
+    font-weight: 800;
+    font-size: 22px;
+    transition: var(--transition);
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-bottom: 25px;
+    transition: var(--transition);
+}
+
+label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+}
+
+input, select {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 2px solid var(--input-border);
+    font-size: 16px;
+    background: var(--input-bg);
+    transition: all 0.2s ease;
+    outline: none;
+    color: var(--text-main);
+}
+
+input:focus, select:focus {
+    border-color: var(--primary);
+    background: var(--card-bg);
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.date-section {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.button-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: transform 0.1s active, var(--transition);
+}
+
+button:active { transform: scale(0.98); }
+
+#saveBtn { 
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark)); 
+    color: #fff; 
+    box-shadow: var(--btn-shadow);
+}
+
+.viewBtn { 
+    background: var(--input-bg); 
+    color: var(--text-main); 
+    border: 1px solid var(--input-border); 
+}
+
+.logoutBtn { 
+    background: #fff1f2; 
+    color: #be123c; 
+    margin-top: 5px; 
+}
+
+body.dark-mode .logoutBtn {
+    background: #7f1d1d;
+    color: #fecaca;
+}
+
+#status {
+    font-size: 13px;
+    margin-top: 15px;
+    text-align: center;
+    font-weight: 600;
+    min-height: 20px;
+}
+
+#minorOther {
+    margin-top: -10px;
+    margin-bottom: 15px;
+    border-left: 3px solid var(--primary);
+    display: none;
+}
+
+@media (max-width: 380px) {
+    .container { padding: 20px 15px; }
+    h2 { font-size: 20px; }
+    .date-section { grid-template-columns: 1fr 1fr 1fr; }
+    .dark-mode-toggle {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Dark Mode Toggle Button -->
+<button class="dark-mode-toggle" onclick="toggleDarkMode()" id="darkModeToggle" title="Toggle Dark Mode">
+    <i class="fas fa-moon"></i>
+</button>
+
+<div class="container">
+    <h2>New Student Record</h2>
+    <p class="subtitle">Enter violation details below</p>
+
+    <form id="recordForm">
+        <label>Personal Information</label>
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="text" id="student_number" placeholder="Student ID Number" required>
+        <input type="email" id="cca_email" placeholder="CCA Email Address" required>
+        <input type="text" id="course" placeholder="Course / Section" required>
+
+        <label>Offense History</label>
+        <input type="text" id="major" placeholder="Major Offense (Optional)">
+
+        <select id="minor">
+            <option value="">Select Minor Offense (Optional)</option>
+            <option value="NO ID">🆔 NO ID</option>
+            <option value="NO UNIFORM">👕 NO UNIFORM</option>
+            <option value="DRESS CODE">👔 DRESS CODE</option>
+            <option value="HAIR COLOR">💇 HAIR COLOR</option>
+            <option value="PIERCINGS">💍 PIERCINGS</option>
+            <option value="MISCONDUCT">⚠️ MISCONDUCT</option>
+            <option value="LATE">⏰ LATE</option>
+            <option value="OTHERS">📌 OTHERS</option>
+        </select>
+
+        <input type="text" id="minorOther" placeholder="Please specify offense">
+
+        <label>Incident Date</label>
+        <div class="date-section">
+            <select id="month" required>
+                <option value="">Month</option>
+                <option value="01">Jan</option>
+                <option value="02">Feb</option>
+                <option value="03">Mar</option>
+                <option value="04">Apr</option>
+                <option value="05">May</option>
+                <option value="06">Jun</option>
+                <option value="07">Jul</option>
+                <option value="08">Aug</option>
+                <option value="09">Sep</option>
+                <option value="10">Oct</option>
+                <option value="11">Nov</option>
+                <option value="12">Dec</option>
+            </select>
+            <select id="day" required>
+                <option value="">Day</option>
+            </select>
+            <select id="year" required>
+                <option value="">Year</option>
+            </select>
+        </div>
+
+        <div class="button-stack">
+            <button type="button" id="saveBtn"><i class="fas fa-save"></i> Save Record</button>
+            <button type="button" class="viewBtn" onclick="window.location='records.html'"><i class="fas fa-list"></i> View Records</button>
+            <button type="button" class="logoutBtn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+        </div>
+
+        <p id="status"></p>
+    </form>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDFT7z-AmRLu8lig84D_tKA9OhF7joW9c0",
+    authDomain: "sasosystem-206d0.firebaseapp.com",
+    projectId: "sasosystem-206d0",
+    storageBucket: "sasosystem-206d0.appspot.com",
+    messagingSenderId: "526763192518",
+    appId: "1:526763192518:web:b1f544270439e8664067c7"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+const status = document.getElementById("status");
+
+// Dark Mode Functions
+window.toggleDarkMode = function() {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDark);
+    
+    const toggleBtn = document.getElementById('darkModeToggle');
+    if (toggleBtn) {
+        toggleBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+    
+    showStatus(isDark ? 'Dark mode enabled' : 'Light mode enabled', '#22c55e');
+};
+
+// Load dark mode preference
+if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+    const toggleBtn = document.getElementById('darkModeToggle');
+    if (toggleBtn) {
+        toggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+}
+
+// Handle "OTHERS" option
+const minorSelect = document.getElementById("minor");
+const minorOther = document.getElementById("minorOther");
+
+minorSelect.addEventListener("change", () => {
+    if (minorSelect.value === "OTHERS") {
+        minorOther.style.display = "block";
+        minorOther.required = true;
+    } else {
+        minorOther.style.display = "none";
+        minorOther.required = false;
+        minorOther.value = "";
+    }
+});
+
+// Populate Date Dropdowns
+const daySelect = document.getElementById("day");
+const yearSelect = document.getElementById("year");
+
+// Days
+for(let d = 1; d <= 31; d++) {
+    const option = document.createElement("option");
+    option.value = String(d).padStart(2, '0');
+    option.textContent = d;
+    daySelect.appendChild(option);
+}
+
+// Years
+const currentYear = new Date().getFullYear();
+for(let y = currentYear; y >= 2020; y--) {
+    const option = document.createElement("option");
+    option.value = y;
+    option.textContent = y;
+    yearSelect.appendChild(option);
+}
+
+// Set default date to today
+const today = new Date();
+document.getElementById("month").value = String(today.getMonth() + 1).padStart(2, '0');
+document.getElementById("day").value = String(today.getDate()).padStart(2, '0');
+document.getElementById("year").value = today.getFullYear();
+
+// Auth Guard
+onAuthStateChanged(auth, (user) => { 
+    if(!user) window.location.href = "login.html"; 
+});
+
+window.logout = async () => { 
+    if(confirm("Are you sure you want to logout?")) {
+        await signOut(auth); 
+        window.location.href = "login.html"; 
+    }
+};
+
+// FUNCTION TO CONVERT DATE TO MONTH - DAY - YEAR FORMAT
+function formatDateToMonthDayYear(dateString) {
+    try {
+        const [year, month, day] = dateString.split('-');
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        const monthName = monthNames[parseInt(month) - 1];
+        return `${monthName} - ${parseInt(day)} - ${year}`;
+    } catch (e) {
+        console.error("Error formatting date:", e);
+        return dateString;
+    }
+}
+
+function showStatus(msg, color = "#059669") {
+    status.style.color = color;
+    status.innerText = msg;
+    setTimeout(() => {
+        if (status.innerText === msg) {
+            status.innerText = "";
+        }
+    }, 3000);
+}
+
+// Save Logic
+document.getElementById("saveBtn").addEventListener("click", async () => {
+    const btn = document.getElementById("saveBtn");
+    const name = document.getElementById("name").value.trim();
+    const student_number = document.getElementById("student_number").value.trim();
+    const cca_email = document.getElementById("cca_email").value.trim();
+    const course = document.getElementById("course").value.trim();
+    const major = document.getElementById("major").value.trim();
+    
+    let minor = minorSelect.value;
+    if (minor === "OTHERS") {
+        minor = minorOther.value.trim();
+    }
+    
+    const month = document.getElementById("month").value;
+    const day = document.getElementById("day").value;
+    const year = document.getElementById("year").value;
+
+    if(!name || !student_number || !cca_email || !course || !month || !day || !year){
+        showStatus("⚠ Please fill all required fields!", "#e11d48");
+        return;
+    }
+
+    if (minorSelect.value === "OTHERS" && !minor) {
+        showStatus("⚠ Please specify the offense!", "#e11d48");
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+    
+    const clientDate = `${year}-${month}-${day}`;
+    const formattedDate = formatDateToMonthDayYear(clientDate);
+
+    try {
+        const docData = {
+            name: name,
+            student_number: student_number,
+            cca_email: cca_email,
+            course: course,
+            major: major || "",
+            minor: minor || "",
+            date: formattedDate,
+            offense_count: (major ? 1 : 0) + (minor ? 1 : 0),
+            created_at: serverTimestamp(),
+            last_updated: serverTimestamp()
+        };
+        
+        await addDoc(collection(db, "studentRecords"), docData);
+        
+        showStatus("✔ Record saved successfully!", "#22c55e");
+        
+        document.getElementById("recordForm").reset();
+        minorOther.style.display = "none";
+        minorOther.value = "";
+        minorSelect.value = "";
+        
+        document.getElementById("month").value = String(today.getMonth() + 1).padStart(2, '0');
+        document.getElementById("day").value = String(today.getDate()).padStart(2, '0');
+        document.getElementById("year").value = today.getFullYear();
+        
+    } catch(err) {
+        console.error("Error saving:", err);
+        showStatus("✖ Error: " + err.message, "#e11d48");
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-save"></i> Save Record';
+    }
+});
+</script>
+
+</body>
+</html>

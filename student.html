@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SASO | Student Profile</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="download-Photoroom.png" sizes="96x96" />
+    <link rel="icon" type="image/png" sizes="32x32" href="download-Photoroom.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="download-Photoroom.png">
+    <link rel="icon" href="download-Photoroom.png" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/download-Photoroom.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="download-Photoroom.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="download-Photoroom.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="download-Photoroom.png">
+<link rel="icon" type="school logo-Photoroom" href="download-Photoroom.png">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root {
+  --primary: #059669;
+  --primary-dark: #047857;
+  --primary-light: #10b981;
+  --danger: #dc2626;
+  --warning: #d97706;
+  --success: #10b981;
+  --bg: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  --card: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --info-bg: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  --input-bg: #f8fafc;
+  --input-border: #e2e8f0;
+  --hover-bg: #f1f5f9;
+  --offense-item-bg: white;
+  --offense-item-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  --offense-item-hover-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  --no-offenses-bg: #f8fafc;
+  --no-offenses-border: #cbd5e1;
+  --modal-content-bg: white;
+  --modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+  --id-badge-bg: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  --id-badge-color: var(--primary-dark);
+  --header-icon-color: var(--primary);
+  --stat-major-bg: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  --stat-major-color: #991b1b;
+  --stat-minor-bg: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  --stat-minor-color: #92400e;
+  --stat-total-bg: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  --stat-total-color: var(--primary-dark);
+  --major-item-bg: linear-gradient(135deg, #fff5f5 0%, #fee2e2 100%);
+  --minor-item-bg: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  --radius: 20px;
+  --shadow: 0 10px 30px rgba(5, 150, 105, 0.1);
+  --shadow-hover: 0 15px 40px rgba(5, 150, 105, 0.2);
+  --shadow-3d: 0 10px 20px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.05);
+  --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  --transition: all 0.3s ease;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+  --primary: #22c55e;
+  --primary-dark: #16a34a;
+  --primary-light: #4ade80;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --success: #22c55e;
+  --bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --card: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --info-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --input-bg: #0f172a;
+  --input-border: #334155;
+  --hover-bg: #2d3a4f;
+  --offense-item-bg: #0f172a;
+  --offense-item-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  --offense-item-hover-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  --no-offenses-bg: #1e293b;
+  --no-offenses-border: #334155;
+  --modal-content-bg: #1e293b;
+  --modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --id-badge-bg: linear-gradient(135deg, #14532d 0%, #166534 100%);
+  --id-badge-color: #86efac;
+  --header-icon-color: #4ade80;
+  --stat-major-bg: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+  --stat-major-color: #fecaca;
+  --stat-minor-bg: linear-gradient(135deg, #78350f 0%, #92400e 100%);
+  --stat-minor-color: #fef3c7;
+  --stat-total-bg: linear-gradient(135deg, #14532d 0%, #166534 100%);
+  --stat-total-color: #bbf7d0;
+  --major-item-bg: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+  --minor-item-bg: linear-gradient(135deg, #78350f 0%, #92400e 100%);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  background: var(--bg);
+  margin: 0;
+  padding: 12px;
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: var(--transition);
+}
+.container {
+  max-width: 500px;
+  margin: auto;
+  background: var(--card);
+  padding: 25px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(5, 150, 105, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+/* Header Section */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
+  position: relative;
+}
+.header h2 {
+  margin: 0;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 4px rgba(5, 150, 105, 0.1);
+}
+.id-badge {
+  background: var(--id-badge-bg);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--id-badge-color);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  box-shadow: var(--shadow-inset);
+  display: inline-block;
+  margin-top: 5px;
+}
+.header-icon {
+  color: var(--header-icon-color);
+  filter: drop-shadow(0 4px 6px rgba(5, 150, 105, 0.2));
+  transition: transform 0.3s ease;
+}
+.header-icon:hover {
+  transform: scale(1.05);
+}
+/* Offense Summary Badges - 3D effect */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+.stat-card {
+  padding: 16px 12px;
+  border-radius: 16px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-3d);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  transform: translateY(0);
+}
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+.stat-card span {
+  display: block;
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.s-major {
+  background: var(--stat-major-bg);
+  color: var(--stat-major-color);
+  border-top: 4px solid #f87171;
+}
+.s-minor {
+  background: var(--stat-minor-bg);
+  color: var(--stat-minor-color);
+  border-top: 4px solid #f59e0b;
+}
+.s-total {
+  background: var(--stat-total-bg);
+  color: var(--stat-total-color);
+  border-top: 4px solid var(--primary);
+}
+/* Mobile Buttons */
+.btn-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+.btn {
+  border: none;
+  padding: 16px 8px;
+  border-radius: 14px;
+  color: white;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-3d);
+  position: relative;
+  overflow: hidden;
+  transform: translateY(0);
+}
+.btn:hover {
+  transform: translateY(-3px);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn-add {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-bottom: 4px solid var(--primary-dark);
+}
+.btn-edit {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  border-bottom: 4px solid #d97706;
+}
+.btn-delete {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border-bottom: 4px solid #dc2626;
+}
+.btn-back {
+  background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+  border-bottom: 4px solid #475569;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 16px;
+}
+.btn i {
+  font-size: 1.4rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+/* Data Rows */
+.info-box {
+  background: var(--info-bg);
+  border-radius: 18px;
+  padding: 10px 20px;
+  border: 1px solid rgba(5, 150, 105, 0.15);
+  box-shadow: var(--shadow-inset);
+}
+.info-row {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  transition: padding 0.2s ease;
+}
+.info-row:last-child {
+  border-bottom: none;
+}
+.info-row:hover {
+  padding-left: 5px;
+}
+.info-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.info-label::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--primary);
+  border-radius: 50%;
+}
+.info-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  word-break: break-word;
+  padding-left: 12px;
+}
+
+/* Offense list styling */
+.offense-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.offense-item {
+  background: var(--offense-item-bg);
+  padding: 16px 16px;
+  border-radius: 14px;
+  border-left: 8px solid;
+  box-shadow: var(--offense-item-shadow);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: transform 0.2s ease;
+  width: 100%;
+  color: var(--text-primary);
+}
+
+.offense-item:hover {
+  transform: translateX(5px);
+  box-shadow: var(--offense-item-hover-shadow);
+}
+
+.offense-item.major-item {
+  border-left-color: #dc2626;
+  background: var(--major-item-bg);
+  color: var(--text-primary);
+}
+
+.offense-item.minor-item {
+  border-left-color: #f59e0b;
+  background: var(--minor-item-bg);
+  color: var(--text-primary);
+}
+
+.offense-item i {
+  font-size: 1.3rem;
+  min-width: 24px;
+  text-align: center;
+}
+
+.offense-item.major-item i {
+  color: #dc2626;
+}
+
+.offense-item.minor-item i {
+  color: #f59e0b;
+}
+
+.offense-desc {
+  flex: 1;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.offense-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  background: rgba(255,255,255,0.7);
+  padding: 6px 12px;
+  border-radius: 30px;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.no-offenses {
+  padding: 20px;
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+  background: var(--no-offenses-bg);
+  border-radius: 12px;
+  font-size: 1rem;
+  border: 1px dashed var(--no-offenses-border);
+  margin: 10px 0;
+}
+
+.offense-badge {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-left: 8px;
+}
+
+/* Modal Styles - 3D effects */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.modal-content {
+  background: var(--modal-content-bg);
+  width: 100%;
+  max-width: 420px;
+  border-radius: 24px;
+  padding: 25px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: var(--modal-shadow);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  transform: translateY(0);
+  animation: slideUp 0.4s ease;
+}
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.modal-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.modal-header i {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+.modal-header h3 {
+  margin: 0;
+  font-weight: 800;
+  color: var(--text-primary);
+  background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--primary-dark);
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+input, select, textarea {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid var(--input-border);
+  border-radius: 12px;
+  font-size: 16px;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-inset);
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+textarea {
+  height: 100px;
+  resize: none;
+  font-size: 0.9rem;
+}
+.modal-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 25px;
+}
+.hidden {
+  display: none !important;
+}
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.id-badge-container {
+  position: relative;
+  display: inline-block;
+}
+.id-badge-container::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.1) 0%, transparent 100%);
+  border-radius: 20px;
+  transform: translate(-50%, -50%) scale(1.1);
+  z-index: -1;
+}
+
+/* Dark mode toggle button */
+.dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  border: none;
+  color: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition);
+}
+
+.dark-mode-toggle:hover {
+  transform: scale(1.1);
+}
+</style>
+</head>
+
+<body>
+<!-- Dark Mode Toggle Button -->
+<button class="dark-mode-toggle" onclick="toggleDarkMode()" id="darkModeToggle">
+  <i class="fas fa-moon"></i>
+</button>
+
+<div class="container">
+  <div class="header">
+    <div>
+      <h2>Student Profile</h2>
+      <div class="id-badge-container">
+        <div id="studentIdDisplay" class="id-badge floating"></div>
+      </div>
+    </div>
+    <i class="fas fa-user-circle fa-3x header-icon floating"></i>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card s-major"><span id="majorCount">0</span> Major</div>
+    <div class="stat-card s-minor"><span id="minorCount">0</span> Minor</div>
+    <div class="stat-card s-total"><span id="totalCount">0</span> Total</div>
+  </div>
+
+  <div class="btn-grid">
+    <button id="addOffenseBtn" class="btn btn-add"><i class="fas fa-plus-circle"></i> Offense</button>
+    <button id="editRecordBtn" class="btn btn-edit"><i class="fas fa-user-edit"></i> Info</button>
+    <button id="deleteRecordBtn" class="btn btn-delete"><i class="fas fa-trash"></i> Delete</button>
+  </div>
+
+  <div class="info-box">
+    <div class="info-row">
+      <div class="info-label">Full Name</div>
+      <div class="info-value" id="name">---</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Student No.</div>
+      <div class="info-value" id="student_number">---</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Course</div>
+      <div class="info-value" id="course">---</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Email</div>
+      <div class="info-value" id="cca_email">---</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Date</div>
+      <div class="info-value" id="date">---</div>
+    </div>
+    
+    <div class="info-row">
+      <div class="info-label">
+        <i class="fas fa-exclamation-triangle" style="color: #dc2626; font-size: 0.9rem;"></i>
+        Major Offenses 
+        <span class="offense-badge" id="majorCountBadge">0</span>
+      </div>
+      <div class="info-value" id="majorDisp"></div>
+    </div>
+    
+    <div class="info-row">
+      <div class="info-label">
+        <i class="fas fa-circle" style="color: #f59e0b; font-size: 0.9rem;"></i>
+        Minor Offenses 
+        <span class="offense-badge" id="minorCountBadge">0</span>
+      </div>
+      <div class="info-value" id="minorDisp"></div>
+    </div>
+  </div>
+
+  <a href="records.html" class="btn btn-back"><i class="fas fa-chevron-left"></i> &nbsp; Back to Records</a>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="modal" id="editModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <i class="fas fa-edit" style="color: var(--warning);"></i>
+      <h3>Edit Student Record</h3>
+    </div>
+    <div class="form-group"><label>Name</label><input type="text" id="editName"></div>
+    <div class="form-group"><label>Student #</label><input type="text" id="editStudentNo"></div>
+    <div class="form-group"><label>Course</label><input type="text" id="editCourse"></div>
+    <div class="form-group"><label>Email</label><input type="email" id="editEmail"></div>
+    <div class="form-group"><label>Date</label><input type="date" id="editDate"></div>
+    <div class="form-group"><label>Major History (| separator)</label><textarea id="editMajor" placeholder="Cheating (January - 15 - 2024)|Fighting (February - 20 - 2024)"></textarea></div>
+    <div class="form-group"><label>Minor History (| separator)</label><textarea id="editMinor" placeholder="NO UNIFORM (January - 10 - 2024)|PIERCINGS (February - 5 - 2024)"></textarea></div>
+    <div class="modal-footer">
+      <button id="closeEditBtn" class="btn" style="background:linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%); border-bottom:4px solid #94a3b8; color:#1e293b">Cancel</button>
+      <button id="saveEditBtn" class="btn btn-edit" style="flex-direction:row; justify-content:center;">Update All</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD OFFENSE MODAL -->
+<div class="modal" id="addOffenseModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <i class="fas fa-exclamation-triangle" style="color: var(--success);"></i>
+      <h3>New Offense</h3>
+    </div>
+    <div class="form-group">
+      <label>Level</label>
+      <select id="offenseType">
+        <option value="">Select Level</option>
+        <option value="minor">🟡 Minor Offense</option>
+        <option value="major">🔴 Major Offense</option>
+      </select>
+    </div>
+    <div id="majorGroup" class="form-group hidden">
+      <label>Violation Description</label>
+      <input type="text" id="offenseDescInput" placeholder="e.g. Cheating">
+    </div>
+    <div id="minorGroup" class="form-group hidden">
+      <label>Offense Type</label>
+      <select id="offenseDescSelect">
+        <option value="">Select Minor</option>
+        <option value="NO ID">🆔 NO ID</option>
+        <option value="NO UNIFORM">👕 NO UNIFORM</option>
+        <option value="DRESS CODE">👔 DRESS CODE</option>
+        <option value="HAIR COLOR">💇 HAIR COLOR</option>
+        <option value="PIERCINGS">💍 PIERCINGS</option>
+        <option value="MISCONDUCT">⚠️ MISCONDUCT</option>
+        <option value="LATE">⏰ LATE</option>
+        <option value="OTHERS">📌 OTHERS</option>
+      </select>
+      <input type="text" id="offenseMinorOther" class="hidden" placeholder="Specify offense..." style="margin-top:10px;">
+    </div>
+    <div class="form-group"><label>Date</label><input type="date" id="offenseDate"></div>
+    <div class="modal-footer">
+      <button id="cancelOffenseBtn" class="btn" style="background:linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%); border-bottom:4px solid #94a3b8; color:#1e293b">Cancel</button>
+      <button id="saveOffenseBtn" class="btn btn-add" style="flex-direction:row; justify-content:center;">Save Offense</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+import { getFirestore, doc, getDoc, updateDoc, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDFT7z-AmRLu8lig84D_tKA9OhF7joW9c0",
+  authDomain: "sasosystem-206d0.firebaseapp.com",
+  projectId: "sasosystem-206d0"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const $ = id => document.getElementById(id);
+const currentId = new URLSearchParams(window.location.search).get("id");
+if(!currentId) location.href="records.html";
+
+let studentData = {};
+
+// Dark Mode Functions
+window.toggleDarkMode = function() {
+  document.body.classList.toggle('dark-mode');
+  const isDark = document.body.classList.contains('dark-mode');
+  localStorage.setItem('darkMode', isDark);
+  
+  // Update toggle button icon
+  const toggleBtn = document.getElementById('darkModeToggle');
+  if (toggleBtn) {
+    toggleBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+  }
+  
+  showToast(isDark ? 'Dark mode enabled' : 'Light mode enabled');
+};
+
+// Load dark mode preference
+if (localStorage.getItem('darkMode') === 'true') {
+  document.body.classList.add('dark-mode');
+  const toggleBtn = document.getElementById('darkModeToggle');
+  if (toggleBtn) {
+    toggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+  }
+}
+
+// Toast notification function
+function showToast(msg, type = "success") {
+  // Create toast element if it doesn't exist
+  let toast = document.getElementById("statusToast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "statusToast";
+    toast.style.cssText = `
+      position: fixed;
+      top: 25px;
+      right: 25px;
+      background: linear-gradient(135deg, var(--primary-500), var(--primary-700));
+      color: white;
+      padding: 18px 28px;
+      border-radius: 12px;
+      z-index: 2000;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      font-weight: 600;
+      border-left: 5px solid white;
+      animation: slideIn 0.4s ease;
+      max-width: 400px;
+    `;
+    document.body.appendChild(toast);
+  }
+  
+  toast.innerText = msg;
+  toast.style.background = type === "error" ? "#dc2626" : "#22c55e";
+  toast.style.display = "block";
+  setTimeout(() => toast.style.display = "none", 3000);
+}
+
+// Set today's date as default for offense form
+$("offenseDate").valueAsDate = new Date();
+
+function formatDateToMonthDayYear(date) {
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  
+  const month = monthNames[date.getMonth()];
+  const day = date.getDate();
+  const year = date.getFullYear();
+  
+  return `${month} - ${day} - ${year}`;
+}
+
+function parseMonthDayYearToDate(dateString) {
+  if (!dateString || dateString.trim() === "") return null;
+  
+  try {
+    const parts = dateString.split(" - ");
+    if (parts.length !== 3) return new Date(dateString);
+    
+    const monthNames = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    
+    const month = monthNames.indexOf(parts[0]);
+    const day = parseInt(parts[1]);
+    const year = parseInt(parts[2]);
+    
+    if (month === -1 || isNaN(day) || isNaN(year)) {
+      return new Date(dateString);
+    }
+    
+    return new Date(year, month, day);
+  } catch (e) {
+    return new Date(dateString);
+  }
+}
+
+function formatOffenseDate(dateStr) {
+  try {
+    const monthNames = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    
+    const parts = dateStr.split(" - ");
+    if (parts.length === 3 && monthNames.includes(parts[0])) {
+      return dateStr;
+    }
+    
+    const date = new Date(dateStr);
+    if (!isNaN(date.getTime())) {
+      return formatDateToMonthDayYear(date);
+    }
+    
+    return dateStr;
+  } catch (e) {
+    return dateStr;
+  }
+}
+
+function displayOffensesAsList(offenseStr, elementId, type) {
+  const container = document.getElementById(elementId);
+  if (!offenseStr || offenseStr.trim() === "") {
+    container.innerHTML = '<div class="no-offenses">No offenses recorded</div>';
+    return;
+  }
+  
+  const offenses = offenseStr.split('|')
+    .filter(entry => entry.trim() !== "");
+  
+  let html = '<div class="offense-list">';
+  
+  offenses.forEach((entry) => {
+    const match = entry.match(/^(.*?)\s*\((.*?)\)$/);
+    let description = entry.trim();
+    let date = "";
+    
+    if (match) {
+      description = match[1].trim();
+      date = formatOffenseDate(match[2].trim());
+    }
+    
+    let icon = 'fa-solid fa-circle';
+    if (type === 'major') {
+      icon = 'fa-solid fa-circle-exclamation';
+    } else {
+      if (description.includes('UNIFORM')) icon = 'fa-solid fa-shirt';
+      else if (description.includes('ID')) icon = 'fa-solid fa-id-card';
+      else if (description.includes('HAIR')) icon = 'fa-solid fa-scissors';
+      else if (description.includes('PIERCINGS')) icon = 'fa-solid fa-gem';
+      else if (description.includes('LATE')) icon = 'fa-solid fa-clock';
+      else if (description.includes('MISCONDUCT')) icon = 'fa-solid fa-hand';
+      else if (description.includes('DRESS')) icon = 'fa-solid fa-shirt';
+      else icon = 'fa-solid fa-circle';
+    }
+    
+    const itemClass = type === 'major' ? 'major-item' : 'minor-item';
+    
+    html += `
+      <div class="offense-item ${itemClass}">
+        <i class="fas ${icon}"></i>
+        <span class="offense-desc">${description}</span>
+        ${date ? `<span class="offense-date">${date}</span>` : ''}
+      </div>
+    `;
+  });
+  
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+async function loadStudent(){
+  const snap = await getDoc(doc(db,"studentRecords",currentId));
+  if(!snap.exists()) return;
+  
+  studentData = snap.data();
+  $("studentIdDisplay").textContent = "ID: " + currentId;
+  $("name").textContent = studentData.name || "---";
+  $("student_number").textContent = studentData.student_number || "---";
+  $("course").textContent = studentData.course || "---";
+  $("cca_email").textContent = studentData.cca_email || "---";
+  
+  if(studentData.date) {
+    try {
+      if (typeof studentData.date === 'string') {
+        $("date").textContent = studentData.date;
+      } else if (studentData.date.toDate) {
+        const dateObj = studentData.date.toDate();
+        $("date").textContent = formatDateToMonthDayYear(dateObj);
+      } else {
+        const dateObj = new Date(studentData.date);
+        $("date").textContent = formatDateToMonthDayYear(dateObj);
+      }
+    } catch (e) {
+      $("date").textContent = studentData.date || "---";
+    }
+  } else {
+    $("date").textContent = "---";
+  }
+  
+  const mj = countOffenses(studentData.major);
+  const mn = countOffenses(studentData.minor);
+  
+  $("majorCount").textContent = mj;
+  $("minorCount").textContent = mn;
+  $("totalCount").textContent = mj + mn;
+  $("majorCountBadge").textContent = mj;
+  $("minorCountBadge").textContent = mn;
+  
+  displayOffensesAsList(studentData.major, "majorDisp", "major");
+  displayOffensesAsList(studentData.minor, "minorDisp", "minor");
+}
+
+function countOffenses(str) {
+  if (!str || str.trim() === "") return 0;
+  return str.split("|").filter(s => s.trim() !== "").length;
+}
+
+// Edit Record Logic
+$("editRecordBtn").onclick = () => {
+  $("editName").value = studentData.name || "";
+  $("editStudentNo").value = studentData.student_number || "";
+  $("editCourse").value = studentData.course || "";
+  $("editEmail").value = studentData.cca_email || "";
+  
+  let dateForInput = "";
+  if(studentData.date) {
+    try {
+      if (typeof studentData.date === 'string') {
+        const dateObj = parseMonthDayYearToDate(studentData.date);
+        if (dateObj && !isNaN(dateObj.getTime())) {
+          dateForInput = dateObj.toISOString().split('T')[0];
+        }
+      } else if (studentData.date.toDate) {
+        const dateObj = studentData.date.toDate();
+        dateForInput = dateObj.toISOString().split('T')[0];
+      } else {
+        const dateObj = new Date(studentData.date);
+        if (!isNaN(dateObj.getTime())) {
+          dateForInput = dateObj.toISOString().split('T')[0];
+        }
+      }
+    } catch (e) {
+      console.error("Error parsing date:", e);
+    }
+  }
+  
+  $("editDate").value = dateForInput;
+  $("editMajor").value = studentData.major || "";
+  $("editMinor").value = studentData.minor || "";
+  $("editModal").style.display = "flex";
+};
+
+$("closeEditBtn").onclick = () => $("editModal").style.display = "none";
+
+$("saveEditBtn").onclick = async () => {
+  const mj = $("editMajor").value.trim();
+  const mn = $("editMinor").value.trim();
+  
+  let dateValue = $("editDate").value;
+  let dateToSave = "";
+  
+  if (dateValue) {
+    const dateObj = new Date(dateValue);
+    if (!isNaN(dateObj.getTime())) {
+      dateToSave = formatDateToMonthDayYear(dateObj);
+    } else {
+      dateToSave = dateValue;
+    }
+  }
+  
+  const updated = {
+    name: $("editName").value,
+    student_number: $("editStudentNo").value,
+    course: $("editCourse").value,
+    cca_email: $("editEmail").value,
+    date: dateToSave,
+    major: mj,
+    minor: mn,
+    offense_count: countOffenses(mj) + countOffenses(mn),
+    last_updated: serverTimestamp()
+  };
+  
+  try {
+    await updateDoc(doc(db, "studentRecords", currentId), updated);
+    $("editModal").style.display = "none";
+    alert("Record updated successfully!");
+    loadStudent();
+  } catch (error) {
+    console.error("Error updating document:", error);
+    alert("Error updating record. Please try again.");
+  }
+};
+
+// Add Offense Logic
+$("offenseType").onchange = (e) => {
+  $("majorGroup").classList.toggle("hidden", e.target.value !== "major");
+  $("minorGroup").classList.toggle("hidden", e.target.value !== "minor");
+};
+
+$("offenseDescSelect").onchange = (e) => {
+  $("offenseMinorOther").classList.toggle("hidden", e.target.value !== "OTHERS");
+};
+
+$("addOffenseBtn").onclick = () => {
+  $("offenseType").value = "";
+  $("offenseDescInput").value = "";
+  $("offenseDescSelect").value = "";
+  $("offenseMinorOther").value = "";
+  $("offenseMinorOther").classList.add("hidden");
+  $("offenseDate").valueAsDate = new Date();
+  $("majorGroup").classList.add("hidden");
+  $("minorGroup").classList.add("hidden");
+  
+  $("addOffenseModal").style.display="flex";
+};
+
+$("cancelOffenseBtn").onclick = () => $("addOffenseModal").style.display="none";
+
+$("saveOffenseBtn").onclick = async () => {
+  const type = $("offenseType").value;
+  const dateStr = $("offenseDate").value;
+  let desc = type === 'major' ? $("offenseDescInput").value.trim() : $("offenseDescSelect").value;
+  
+  if (desc === 'OTHERS') desc = $("offenseMinorOther").value.trim();
+  
+  if (!type || !dateStr || !desc) return alert("Please fill all fields.");
+  
+  const formattedDate = formatOffenseDate(dateStr);
+  const entry = `${desc} (${formattedDate})`;
+  
+  let newMj = studentData.major || "";
+  let newMn = studentData.minor || "";
+  
+  if (type === 'major') newMj = newMj ? newMj + "|" + entry : entry;
+  else newMn = newMn ? newMn + "|" + entry : entry;
+  
+  await updateDoc(doc(db, "studentRecords", currentId), {
+    major: newMj,
+    minor: newMn,
+    offense_count: countOffenses(newMj) + countOffenses(newMn),
+    last_updated: serverTimestamp()
+  });
+  
+  $("addOffenseModal").style.display = "none";
+  loadStudent();
+};
+
+$("deleteRecordBtn").onclick = async () => {
+  if(confirm("Delete this student permanently?")) {
+    await deleteDoc(doc(db,"studentRecords",currentId));
+    location.href="records.html";
+  }
+};
+
+loadStudent();
+
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('mousedown', () => {
+    btn.style.transform = 'translateY(1px)';
+  });
+  btn.addEventListener('mouseup', () => {
+    btn.style.transform = 'translateY(-3px)';
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = 'translateY(0)';
+  });
+});
+</script>
+</body>
+</html>

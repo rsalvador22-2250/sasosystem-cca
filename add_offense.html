@@ -1,0 +1,154 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SASO | Add Student Record</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="download-Photoroom.png" sizes="96x96" />
+    <link rel="icon" type="image/png" sizes="32x32" href="download-Photoroom.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="download-Photoroom.png">
+    <link rel="icon" href="download-Photoroom.png" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/download-Photoroom.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="download-Photoroom.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="download-Photoroom.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="download-Photoroom.png">
+<link rel="icon" type="school logo-Photoroom" href="download-Photoroom.png">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root{--primary:#059669;--primary-dark:#047857;--bg-gradient:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);--card-bg:#ffffff;--text-main:#1e293b;--text-muted:#64748b;--input-bg:#f8fafc;--input-border:#e2e8f0;--radius:16px;--shadow:0 10px 25px -5px rgba(0,0,0,0.1)}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Plus Jakarta Sans',sans-serif;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg-gradient);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:15px}
+.container{background:var(--card-bg);padding:30px 20px;border-radius:var(--radius);width:100%;max-width:450px;box-shadow:var(--shadow);animation:fadeIn .5s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.container h2{text-align:center;color:var(--text-main);margin-bottom:6px;font-weight:800;font-size:22px}
+.subtitle{text-align:center;color:var(--text-muted);font-size:13px;margin-bottom:25px}
+label{display:block;font-size:12px;font-weight:700;color:var(--text-main);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+input,select{width:100%;padding:12px 14px;margin-bottom:15px;border-radius:10px;border:2px solid var(--input-border);font-size:16px;background:var(--input-bg);transition:.2s ease;outline:none}
+input:focus,select:focus{border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px rgba(5,150,105,.1)}
+.date-section{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:8px;margin-bottom:15px}
+.button-stack{display:flex;flex-direction:column;gap:10px;margin-top:15px}
+button{width:100%;padding:14px;border-radius:10px;border:none;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+button:active{transform:scale(.98)}
+#saveBtn{background:var(--primary);color:#fff;box-shadow:0 4px 12px rgba(5,150,105,.2)}
+.viewBtn{background:#f1f5f9;color:var(--text-main);border:1px solid var(--input-border)}
+.logoutBtn{background:#fff1f2;color:#be123c;margin-top:5px}
+#status{font-size:13px;margin-top:15px;text-align:center;font-weight:600;min-height:20px}
+@media(max-width:380px){.container{padding:20px 15px}h2{font-size:20px}.date-section{grid-template-columns:1fr 1fr 1fr}}
+</style>
+</head>
+
+<body>
+<div class="container">
+<h2>New Student Record</h2>
+<p class="subtitle">Enter violation details below</p>
+
+<form id="recordForm">
+<label>Personal Information</label>
+<input type="text" id="name" placeholder="Full Name" required>
+<input type="text" id="student_number" placeholder="Student ID Number" required>
+<input type="email" id="cca_email" placeholder="CCA Email Address" required>
+<input type="text" id="course" placeholder="Course / Section" required>
+
+<label>Offense History</label>
+<input type="text" id="major" placeholder="Major Offense (Optional)">
+
+<select id="minor">
+<option value="">Select Minor Offense (Optional)</option>
+<option value="NO UNIFORM">NO UNIFORM</option>
+<option value="DRESS CODE">DRESS CODE</option>
+<option value="HAIR COLOR">HAIR COLOR</option>
+<option value="PIERCINGS">PIERCINGS</option>
+<option value="MISCONDUCT">MISCONDUCT</option>
+<option value="Others">OTHERS</option>
+</select>
+
+<input type="text" id="minorOther" placeholder="Please specify offense" style="display:none;margin-top:-10px;">
+
+<label>Incident Date</label>
+<div class="date-section">
+<select id="month" required>
+<option value="">Month</option>
+<option value="01">Jan</option><option value="02">Feb</option><option value="03">Mar</option>
+<option value="04">Apr</option><option value="05">May</option><option value="06">Jun</option>
+<option value="07">Jul</option><option value="08">Aug</option><option value="09">Sep</option>
+<option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option>
+</select>
+<select id="day" required><option value="">Day</option></select>
+<select id="year" required><option value="">Year</option></select>
+</div>
+
+<div class="button-stack">
+<button type="button" id="saveBtn"><i class="fas fa-save"></i> Save Record</button>
+<button type="button" class="viewBtn" onclick="window.location='records.html'"><i class="fas fa-list"></i> View Records</button>
+<button type="button" class="logoutBtn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+</div>
+
+<p id="status"></p>
+</form>
+</div>
+
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+import{getFirestore,collection,addDoc,serverTimestamp}from"https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+import{getAuth,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+
+const firebaseConfig={apiKey:"AIzaSyDFT7z-AmRLu8lig84D_tKA9OhF7joW9c0",authDomain:"sasosystem-206d0.firebaseapp.com",projectId:"sasosystem-206d0",storageBucket:"sasosystem-206d0.appspot.com",messagingSenderId:"526763192518",appId:"1:526763192518:web:b1f544270439e8664067c7"};
+
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+const auth=getAuth(app);
+const status=document.getElementById("status");
+
+const minorSelect=document.getElementById("minor");
+const minorOther=document.getElementById("minorOther");
+minorSelect.addEventListener("change",()=>{minorOther.style.display=minorSelect.value==="Others"?"block":"none";if(minorSelect.value!=="Others")minorOther.value=""});
+
+const daySelect=document.getElementById("day");
+const yearSelect=document.getElementById("year");
+for(let d=1;d<=31;d++)daySelect.innerHTML+=`<option value="${String(d).padStart(2,"0")}">${d}</option>`;
+const currentYear=new Date().getFullYear();
+for(let y=currentYear;y>=2020;y--)yearSelect.innerHTML+=`<option value="${y}">${y}</option>`;
+
+onAuthStateChanged(auth,u=>{if(!u)window.location.href="login.html"});
+window.logout=async()=>{await signOut(auth);window.location.href="login.html"};
+
+document.getElementById("saveBtn").addEventListener("click",async()=>{
+const btn=document.getElementById("saveBtn");
+const name=document.getElementById("name").value.trim();
+const student_number=document.getElementById("student_number").value.trim();
+const cca_email=document.getElementById("cca_email").value.trim();
+const course=document.getElementById("course").value.trim();
+const major=document.getElementById("major").value.trim();
+const minor=minorSelect.value==="Others"?minorOther.value.trim():minorSelect.value;
+const month=document.getElementById("month").value;
+const day=document.getElementById("day").value;
+const year=document.getElementById("year").value;
+
+if(!name||!student_number||!cca_email||!course||!month||!day||!year){
+status.style.color="#e11d48";
+status.innerText="⚠ Please fill all required fields!";
+return;
+}
+
+btn.disabled=true;
+btn.innerText="Saving...";
+const clientDate=`${year}-${month}-${day}`;
+
+try{
+await addDoc(collection(db,"studentRecords"),{name,student_number,cca_email,course,major:major||"",minor:minor||"",date:clientDate,offense_count:(major?1:0)+(minor?1:0),created_at:serverTimestamp(),last_updated:serverTimestamp()});
+status.style.color="#059669";
+status.innerText="✔ Record saved successfully!";
+document.getElementById("recordForm").reset();
+minorOther.style.display="none";
+}catch(err){
+status.style.color="#e11d48";
+status.innerText="✖ Error: "+err.message;
+}finally{
+btn.disabled=false;
+btn.innerHTML='<i class="fas fa-save"></i> Save Record';
+}
+});
+</script>
+</body>
+</html>
